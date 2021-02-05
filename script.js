@@ -17,23 +17,27 @@ function setup() {
 function calculate() {
   console.log("calculate");
 
-  //read first number
+  //read first and second number
   firstnumber = document.querySelector("#firstnumber").value;
-
-  //read second number
   secondnumber = document.querySelector("#secondnumber").value;
 
   //read operator -> add/multiply/divide/subtract
+  let op = document.querySelector("#operator");
+  operator = op.options[op.selectedIndex].text;
 
   //calculate
-  console.log(parseInt(firstnumber) + parseInt(secondnumber));
-  result = parseInt(firstnumber) + parseInt(secondnumber);
+  result = eval(firstnumber + operator + secondnumber);
 
   //check rounded off? -> yes/no
-  //write result at end of list¨
+
+  //write result at end of list
+  document.querySelector("#results").innerHTML += "<li>" + result + "</li>";
+
   //write result in 'firstnumber'
   document.querySelector("#firstnumber").value = result;
+
   //scroll list to bottom
+  document.querySelector("#results").lastChild.scrollIntoView(false);
 }
 
 function clearResults() {
