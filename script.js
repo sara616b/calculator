@@ -1,3 +1,5 @@
+"use strict";
+
 document.addEventListener("DOMContentLoaded", setup);
 
 let firstnumber;
@@ -12,6 +14,7 @@ function setup() {
   document.querySelector("#calculate").addEventListener("click", calculate);
 
   //click clear results
+  document.querySelector("#clear").addEventListener("click", clearResults);
 }
 
 function calculate() {
@@ -29,6 +32,11 @@ function calculate() {
   result = eval(firstnumber + operator + secondnumber);
 
   //check rounded off? -> yes/no
+  if (document.querySelector("#doround").checked == true) {
+    let round = document.querySelector("#decimals");
+    let roundNum = round.options[round.selectedIndex].text;
+    result = result.toFixed(roundNum);
+  }
 
   //write result at end of list
   document.querySelector("#results").innerHTML += "<li>" + result + "</li>";
@@ -44,4 +52,5 @@ function clearResults() {
   console.log("clearResults");
 
   //clear list of results
+  document.querySelector("#results").innerHTML = "";
 }
